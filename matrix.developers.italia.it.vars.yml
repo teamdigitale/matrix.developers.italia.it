@@ -1,0 +1,129 @@
+---
+# The bare domain name which represents your Matrix identity.
+# Matrix user ids for your server will be of the form (`@user:<matrix-domain>`).
+#
+# Note: this playbook does not touch the server referenced here.
+# Installation happens on another server ("matrix.<matrix-domain>").
+#
+# If you've deployed using the wrong domain, you'll have to run the Uninstalling step,
+# because you can't change the Domain after deployment.
+#
+# Example value: example.com
+matrix_domain: developers.italia.it
+
+# The Matrix homeserver software to install.
+# See:
+#  - `roles/custom/matrix-base/defaults/main.yml` for valid options
+# - the `docs/configuring-playbook-IMPLEMENTATION_NAME.md` documentation page, if one is available for your implementation choice
+matrix_homeserver_implementation: synapse
+
+# A secret used as a base, for generating various other secrets.
+# You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
+matrix_homeserver_generic_secret_key: 'eGTamnt4X9qbQVgc5OERr9KZYGeCzEZ6aOibWEuI5yGezw6GL6G2xkmUqZT63LKJ'
+
+# By default, the playbook manages its own Traefik (https://doc.traefik.io/traefik/) reverse-proxy server.
+# It will retrieve SSL certificates for you on-demand and forward requests to all other components.
+# For alternatives, see `docs/configuring-playbook-own-webserver.md`.
+matrix_playbook_reverse_proxy_type: playbook-managed-traefik
+
+# This is something which is provided to Let's Encrypt when retrieving SSL certificates for domains.
+#
+# In case SSL renewal fails at some point, you'll also get an email notification there.
+#
+# If you decide to use another method for managing SSL certificates (different than the default Let's Encrypt),
+# you won't be required to define this variable (see `docs/configuring-playbook-ssl-certificates.md`).
+#
+# Example value: someone@example.com
+devture_traefik_config_certificatesResolvers_acme_email: 'tech@innovazione.gov.it'
+
+# A Postgres password to use for the superuser Postgres user (called `matrix` by default).
+#
+# The playbook creates additional Postgres users and databases (one for each enabled service)
+# using this superuser account.
+devture_postgres_connection_password: 'y1COrPhpCNGEO1fobaSa'
+
+# By default, we configure Coturn's external IP address using the value specified for `ansible_host` in your `inventory/hosts` file.
+# If this value is an external IP address, you can skip this section.
+#
+# If `ansible_host` is not the server's external IP address, you have 2 choices:
+# 1. Uncomment the line below, to allow IP address auto-detection to happen (more on this below)
+# 2. Uncomment and adjust the line below to specify an IP address manually
+#
+# By default, auto-detection will be attempted using the `https://ifconfig.co/json` API.
+# Default values for this are specified in `matrix_coturn_turn_external_ip_address_auto_detection_*` variables in the Coturn role
+# (see `roles/custom/matrix-coturn/defaults/main.yml`).
+#
+# If your server has multiple IP addresses, you may define them in another variable which allows a list of addresses.
+# Example: `matrix_coturn_turn_external_ip_addresses: ['1.2.3.4', '4.5.6.7']`
+#
+# matrix_coturn_turn_external_ip_address: ''
+
+#
+# Default overrides
+#
+
+
+#
+# Optional configuration
+#
+
+# Email
+exim_relay_relay_use: true
+exim_relay_relay_host_name: "smtp.eu.mailgun.org"
+exim_relay_relay_host_port: 587
+exim_relay_relay_auth: true
+exim_relay_relay_auth_username: "matrix@developers.italia.it"
+exim_relay_relay_auth_password: "b37ff9e0d41eb7c7d9bf6ebd0779ec47-0996409b-0861077a"
+
+# Slack bridge
+matrix_appservice_slack_enabled: true
+matrix_appservice_slack_puppeting_enabled: true
+matrix_appservice_slack_puppeting_slackapp_client_id: "6801628824022.7007251306531"
+matrix_appservice_slack_puppeting_slackapp_client_secret: "4c05938f8745cfaae09a26c5c217606a"
+matrix_appservice_slack_control_room_id: "!JqDaABbNwNPSGBTOFD:developers.italia.it"
+
+# matrix_appservice_slack_user_prefix = "slack_"
+
+matrix_appservice_slack_team_sync_enabled: true
+# matrix_appservice_slack_team_sync_alias_prefix: ""
+
+# Slack migration appservice
+aux_file_definitions:
+  - dest: "{{ matrix_synapse_config_dir_path }}/slack-migration-appservice.yaml"
+    content: |
+      id: "Slack Migration Service"
+      url: null
+      as_token: "very_secret"
+      hs_token: "also_secret"
+      sender_localpart: "migration-service"
+      rate_limited: false
+      namespaces:
+        users: # List of users we're interested in
+          - exclusive: false
+            regex: ".*"
+        aliases: # List of aliases we're interested in
+          - exclusive: false
+            regex: ".*"
+        rooms: # List of room ids we're interested in
+          - exclusive: false
+            regex: ".*"
+    mode: '0400'
+    owner: "{{ matrix_user_username }}"
+    group: "{{ matrix_user_groupname }}"
+
+matrix_synapse_app_service_config_files: ['/slack-migration-appservice.yaml']
+matrix_synapse_container_additional_volumes:
+  - src: "{{ matrix_synapse_config_dir_path }}/slack-migration-appservice.yaml"
+    dst: /slack-migration-appservice.yaml
+    options: ro
+    type: bind
+matrix_synapse_container_labels_public_client_synapse_admin_api_enabled: true
+
+# maubot
+# management UI at https://matrix.developers.italia.it/_matrix/maubot/
+#
+# NOTE: register the bot first with
+# just register-user bot.maubot JtPAkiTO45DON5p1InhA8pvQR3qWNAz1Q14BaNwhSM3hkXbmIyR5neXUkFdpeCRm yes
+matrix_bot_maubot_enabled: true
+matrix_bot_maubot_admins:
+  - maubot_admin: dNYNWKATkwoCSJCjZQWffhDNGbyMnh9uJhH69Hba0QkZ9RczX8g01D7RRObBMGDv
