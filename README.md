@@ -85,19 +85,24 @@ Nevertheless, updates can break things **proceed carefully and follow these step
    git push
    ```
 
-### 🔄 Update the installation
+### 🔄 Update the server
 
-1. **Move to the playbook directory:**
+1. **Pull the repo:**
+   ```console
+   git pull --recurse-submodules
+   ```
+
+2. **Move to the playbook directory:**
    ```console
    cd matrix-docker-ansible-deploy/
    ```
 
-2. **Update the roles:**
+3. **Update the roles:**
    ```console
    just roles
    ```
 
-3. **Update the installation :**
+4. **Update the installation :**
 
    Beware: this will result in a short downtime because **the services will be restarted**. ⚠️
 
