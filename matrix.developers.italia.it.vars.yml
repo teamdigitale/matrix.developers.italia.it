@@ -120,11 +120,9 @@ matrix_synapse_container_additional_volumes:
 matrix_synapse_container_labels_public_client_synapse_admin_api_enabled: true
 
 # maubot
-# management UI at https://matrix.developers.italia.it/_matrix/maubot/
 #
-# NOTE: register the bot first with
-# just register-user bot.maubot JtPAkiTO45DON5p1InhA8pvQR3qWNAz1Q14BaNwhSM3hkXbmIyR5neXUkFdpeCRm yes
 matrix_bot_maubot_enabled: true
+matrix_bot_maubot_initial_password: JtPAkiTO45DON5p1InhA8pvQR3qWNAz1Q14BaNwhSM3hkXbmIyR5neXUkFdpeCRm
 matrix_bot_maubot_admins:
-  # Credentials for the maubot admin UI at https://matrix.developers.italia.it/_matrix/maubot/
+  # Credentials for the maubot admin UI at https://matrix.developers.italia.it<your-domain>/_matrix/maubot/
   - maubot_admin: dNYNWKATkwoCSJCjZQWffhDNGbyMnh9uJhH69Hba0QkZ9RczX8g01D7RRObBMGDv
