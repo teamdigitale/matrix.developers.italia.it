@@ -62,6 +62,7 @@ Nevertheless, updates can break things **proceed carefully and follow these step
    not backwards compatible.
 
    ```console
+   git fetch origin
    git shortlog HEAD..origin/master
    ```
 
