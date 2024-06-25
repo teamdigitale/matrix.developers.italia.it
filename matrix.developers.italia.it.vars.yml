@@ -126,3 +126,18 @@ matrix_bot_maubot_initial_password: JtPAkiTO45DON5p1InhA8pvQR3qWNAz1Q14BaNwhSM3h
 matrix_bot_maubot_admins:
   # Credentials for the maubot admin UI at https://matrix.developers.italia.it<your-domain>/_matrix/maubot/
   - maubot_admin: dNYNWKATkwoCSJCjZQWffhDNGbyMnh9uJhH69Hba0QkZ9RczX8g01D7RRObBMGDv
+
+# Draupnir (moderation bot)
+#
+
+# Enable Pantalaimon, this is needed to make the bot work with E2E encrypted rooms
+# matrix_pantalaimon_enabled: true
+#
+# matrix_bot_draupnir_enabled: true
+# matrix_bot_draupnir_pantalaimon_use: true
+#
+# # User name and password for the bot. Required when using Pantalaimon.
+# matrix_bot_draupnir_pantalaimon_username: "bot.draupnir"
+# matrix_bot_draupnir_pantalaimon_password: "9BlwPTZFFLIM2VYnLy88QccHGpUc54RV4St6h3T3xFO4B6cmCLqowwduezThJtsi"
+#
+# matrix_bot_draupnir_management_room: "<ROOMID>"
