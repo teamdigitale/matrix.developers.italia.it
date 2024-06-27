@@ -67,6 +67,8 @@ devture_postgres_connection_password: "{{ lookup('ansible.builtin.password', '/m
 # Optional configuration
 #
 
+matrix_sliding_sync_enabled: true
+
 # Email
 exim_relay_relay_use: true
 exim_relay_relay_host_name: "smtp.eu.mailgun.org"
