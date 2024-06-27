@@ -63,6 +63,9 @@ devture_postgres_connection_password: "{{ lookup('ansible.builtin.password', '/m
 #
 
 matrix_synapse_log_level: DEBUG
+matrix_synapse_configuration_extension_yaml: |
+  push:
+    enabled: false
 
 #
 # Optional configuration
