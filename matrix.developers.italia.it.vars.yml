@@ -84,9 +84,6 @@ matrix_appservice_slack_control_room_id: "!JqDaABbNwNPSGBTOFD:developers.italia.
 
 # matrix_appservice_slack_user_prefix = "slack_"
 
-matrix_appservice_slack_team_sync_enabled: true
-# matrix_appservice_slack_team_sync_alias_prefix: ""
-
 # Slack migration appservice
 aux_file_definitions:
   - dest: "{{ matrix_synapse_config_dir_path }}/slack-migration-appservice.yaml"
