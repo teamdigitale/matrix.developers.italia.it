@@ -42,6 +42,11 @@ devture_traefik_config_certificatesResolvers_acme_email: 'tech@innovazione.gov.i
 # using this superuser account.
 devture_postgres_connection_password: "{{ lookup('ansible.builtin.password', '/matrix/devture_postgres_connection_password length=32) }}"
 
+matrix_user_creator_users_additional:
+  - username: admin
+    initial_password: "{{ lookup('ansible.builtin.password', '/matrix/admin__initial_password length=64) }}"
+    initial_type: admin
+
 # By default, we configure Coturn's external IP address using the value specified for `ansible_host` in your `inventory/hosts` file.
 # If this value is an external IP address, you can skip this section.
 #
