@@ -62,6 +62,7 @@ devture_postgres_connection_password: "{{ lookup('ansible.builtin.password', '/m
 # Default overrides
 #
 
+matrix_synapse_log_level: DEBUG
 
 #
 # Optional configuration
