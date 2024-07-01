@@ -19,7 +19,7 @@ matrix_homeserver_implementation: synapse
 
 # A secret used as a base, for generating various other secrets.
 # You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
-matrix_homeserver_generic_secret_key: "{{ lookup('ansible.builtin.password', '/matrix/matrix_homeserver_generic_secret_key length=64) }}"
+matrix_homeserver_generic_secret_key: "{{ lookup('ansible.builtin.password', '/matrix/matrix_homeserver_generic_secret_key', length=64) }}"
 
 # By default, the playbook manages its own Traefik (https://doc.traefik.io/traefik/) reverse-proxy server.
 # It will retrieve SSL certificates for you on-demand and forward requests to all other components.
@@ -40,11 +40,11 @@ devture_traefik_config_certificatesResolvers_acme_email: 'tech@innovazione.gov.i
 #
 # The playbook creates additional Postgres users and databases (one for each enabled service)
 # using this superuser account.
-devture_postgres_connection_password: "{{ lookup('ansible.builtin.password', '/matrix/devture_postgres_connection_password length=32) }}"
+devture_postgres_connection_password: "{{ lookup('ansible.builtin.password', '/matrix/devture_postgres_connection_password', length=32) }}"
 
 matrix_user_creator_users_additional:
   - username: admin
-    initial_password: "{{ lookup('ansible.builtin.password', '/matrix/admin__initial_password length=64) }}"
+    initial_password: "{{ lookup('ansible.builtin.password', '/matrix/admin__initial_password', length=64) }}"
     initial_type: admin
 
 # By default, we configure Coturn's external IP address using the value specified for `ansible_host` in your `inventory/hosts` file.
@@ -130,10 +130,10 @@ matrix_synapse_container_labels_public_client_synapse_admin_api_enabled: true
 # maubot
 #
 matrix_bot_maubot_enabled: true
-matrix_bot_maubot_initial_password: "{{ lookup('ansible.builtin.password', '/matrix/matrix_bot_maubot_initial_password length=64) }}"
+matrix_bot_maubot_initial_password: "{{ lookup('ansible.builtin.password', '/matrix/matrix_bot_maubot_initial_password', length=64) }}"
 matrix_bot_maubot_admins:
   # Credentials for the maubot admin UI at https://matrix.developers.italia.it<your-domain>/_matrix/maubot/
-  - maubot_admin: "{{ lookup('ansible.builtin.password', '/matrix/matrix_bot_maubot_admins__maubot_admin length=64) }}"
+  - maubot_admin: "{{ lookup('ansible.builtin.password', '/matrix/matrix_bot_maubot_admins__maubot_admin', length=64) }}"
 
 # Draupnir (moderation bot)
 #
@@ -146,6 +146,6 @@ matrix_pantalaimon_enabled: true
 #
 # # User name and password for the bot. Required when using Pantalaimon.
 # matrix_bot_draupnir_pantalaimon_username: "bot.draupnir"
-# matrix_bot_draupnir_pantalaimon_password: "{{ lookup('ansible.builtin.password', '/matrix/matrix_bot_draupnir_pantalaimon_password length=64) }}"
+# matrix_bot_draupnir_pantalaimon_password: "{{ lookup('ansible.builtin.password', '/matrix/matrix_bot_draupnir_pantalaimon_password', length=64) }}"
 #
 # matrix_bot_draupnir_management_room: "<ROOMID>"
