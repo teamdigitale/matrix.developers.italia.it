@@ -18,4 +18,4 @@
 # to the host line below.
 
 [matrix_servers]
-matrix.developers.italia.it ansible_host=20.240.217.231 ansible_ssh_user=root
+matrix.developers.italia.it ansible_host=4.232.64.165 ansible_ssh_user=root
