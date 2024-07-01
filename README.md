@@ -9,6 +9,7 @@ The configuration uses the [matrix-docker-ansible-deploy playbook](https://githu
 - Git
 - Ansible
 - [just](https://github.com/casey/just)
+- Open the ports listed in [prerequisites.md](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/master/docs/prerequisites.md)
 
 ## Getting Started
 
