@@ -84,13 +84,13 @@ exim_relay_relay_host_name: "smtp.eu.mailgun.org"
 exim_relay_relay_host_port: 587
 exim_relay_relay_auth: true
 exim_relay_relay_auth_username: "matrix@developers.italia.it"
-exim_relay_relay_auth_password: "b37ff9e0d41eb7c7d9bf6ebd0779ec47-0996409b-0861077a"
+exim_relay_relay_auth_password: "{{ vault_exim_relay_relay_auth_password }}"
 
 # Slack bridge
 # matrix_appservice_slack_enabled: true
 # matrix_appservice_slack_puppeting_enabled: true
 # matrix_appservice_slack_puppeting_slackapp_client_id: "6801628824022.7007251306531"
-# matrix_appservice_slack_puppeting_slackapp_client_secret: "4c05938f8745cfaae09a26c5c217606a"
+# matrix_appservice_slack_puppeting_slackapp_client_secret: "{{ vault_matrix_appservice_slack_puppeting_slackapp_client_secret }}"
 # matrix_appservice_slack_control_room_id: "!JqDaABbNwNPSGBTOFD:developers.italia.it"
 
 # matrix_appservice_slack_user_prefix = "slack_"
