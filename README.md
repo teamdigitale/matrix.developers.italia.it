@@ -23,6 +23,10 @@ The configuration uses the [matrix-docker-ansible-deploy playbook](https://githu
    cd matrix.developers.italia.it/
    ln -s ../inventory matrix-docker-ansible-deploy/inventory
    ```
+3. **Get the vault file with secrets:**
+
+   Get [vault.yml](https://github.com/teamdigitale/dpt-bogus/blob/main/matrix.developers.italia.it/)
+   and save it to `inventory/host_vars/matrix.developers.italia.it/vault.yml` (you'll need access to the repo).
 
 ## First deployment
 
@@ -40,7 +44,7 @@ Your SSH key must be added to `authorized_keys` of root on the server.
 
 3. **Install and start everything:**
    ```console
-   ansible-playbook -i inventory/hosts setup.yml --tags=install-all,ensure-matrix-users-created,start
+   ansible-playbook -i inventory/hosts setup.yml --ask-vault-pass --tags=install-all,ensure-matrix-users-created,start
    ```
 
 ## Maintenance
@@ -109,5 +113,5 @@ Nevertheless, updates can break things **proceed carefully and follow these step
    Beware: this will result in a short downtime because **the services will be restarted**. ⚠️
 
    ```console
-   just setup-all
+   just setup-all --ask-vault-pass
    ```
