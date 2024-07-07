@@ -47,6 +47,13 @@ matrix_user_creator_users_additional:
     initial_password: "{{ vault_admin_developers_italia_it_initial_password }}"
     initial_type: admin
 
+matrix_synapse_enable_registration: true
+matrix_synapse_enable_registration_captcha: true
+matrix_synapse_recaptcha_public_key: "6LcacwoqAAAAAPJvD7OAcucC7mm85TEbBXXMe9Bu"
+matrix_synapse_recaptcha_private_key: "{{ vault_matrix_synapse_recaptcha_private_key }}"
+# Require an email address for registration
+matrix_synapse_registrations_require_3pid: ["email"]
+
 # By default, we configure Coturn's external IP address using the value specified for `ansible_host` in your `inventory/hosts` file.
 # If this value is an external IP address, you can skip this section.
 #
