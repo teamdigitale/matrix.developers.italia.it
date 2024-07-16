@@ -108,8 +108,8 @@ aux_file_definitions:
     content: |
       id: "Slack Migration Service"
       url: null
-      as_token: "very_secret"
-      hs_token: "also_secret"
+      as_token: "{{ vault_slack_migration_appservice_as_token }}"
+      hs_token: "{{ vault_slack_migration_appservice_hs_token }}"
       sender_localpart: "migration-service"
       rate_limited: false
       namespaces:
