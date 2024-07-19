@@ -134,7 +134,7 @@ matrix_synapse_container_labels_public_client_synapse_admin_api_enabled: true
 matrix_bot_maubot_enabled: true
 matrix_bot_maubot_initial_password: "{{ vault_matrix_bot_maubot_initial_password }}"
 matrix_bot_maubot_admins:
-  # Credentials for the maubot admin UI at https://matrix.developers.italia.it<your-domain>/_matrix/maubot/
+  # Credentials for the maubot admin UI at https://matrix.developers.italia.it/_matrix/maubot/
   - maubot_admin: "{{ vault_matrix_bot_maubot_admins__maubot_admin }}"
 
 # Draupnir (moderation bot)
