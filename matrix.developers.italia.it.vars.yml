@@ -74,10 +74,6 @@ matrix_synapse_registrations_require_3pid: ["email"]
 # Default overrides
 #
 
-matrix_synapse_configuration_extension_yaml: |
-  push:
-    enabled: false
-
 #
 # Optional configuration
 #
