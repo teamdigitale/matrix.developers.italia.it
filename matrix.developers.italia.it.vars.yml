@@ -143,11 +143,11 @@ matrix_bot_maubot_admins:
 # Enable Pantalaimon, this is needed to make the bot work with E2E encrypted rooms
 matrix_pantalaimon_enabled: true
 
-# matrix_bot_draupnir_enabled: true
-# matrix_bot_draupnir_pantalaimon_use: true
-#
-# # User name and password for the bot. Required when using Pantalaimon.
-# matrix_bot_draupnir_pantalaimon_username: "bot.draupnir"
-# matrix_bot_draupnir_pantalaimon_password: "{{ vault_matrix_bot_draupnir_pantalaimon_password }}"
-#
-# matrix_bot_draupnir_management_room: "<ROOMID>"
+matrix_bot_draupnir_enabled: true
+matrix_bot_draupnir_pantalaimon_use: true
+
+# User name and password for the bot. Required when using Pantalaimon.
+matrix_bot_draupnir_pantalaimon_username: "bot.draupnir"
+matrix_bot_draupnir_pantalaimon_password: "{{ vault_matrix_bot_draupnir_pantalaimon_password }}"
+
+matrix_bot_draupnir_management_room: "!mjxUTZfXdhbQzsfySa:developers.italia.it"
