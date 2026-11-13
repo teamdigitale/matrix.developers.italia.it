@@ -26,21 +26,11 @@ matrix_homeserver_generic_secret_key: "{{ vault_matrix_homeserver_generic_secret
 # For alternatives, see `docs/configuring-playbook-own-webserver.md`.
 matrix_playbook_reverse_proxy_type: playbook-managed-traefik
 
-# This is something which is provided to Let's Encrypt when retrieving SSL certificates for domains.
-#
-# In case SSL renewal fails at some point, you'll also get an email notification there.
-#
-# If you decide to use another method for managing SSL certificates (different than the default Let's Encrypt),
-# you won't be required to define this variable (see `docs/configuring-playbook-ssl-certificates.md`).
-#
-# Example value: someone@example.com
-devture_traefik_config_certificatesResolvers_acme_email: 'tech@innovazione.gov.it'
-
 # A Postgres password to use for the superuser Postgres user (called `matrix` by default).
 #
 # The playbook creates additional Postgres users and databases (one for each enabled service)
 # using this superuser account.
-devture_postgres_connection_password: "{{ vault_devture_postgres_connection_password }}"
+postgres_connection_password: "{{ vault_devture_postgres_connection_password }}"
 
 matrix_user_creator_users_additional:
   - username: admin
@@ -118,8 +108,8 @@ aux_file_definitions:
           - exclusive: false
             regex: ".*"
     mode: '0400'
-    owner: "{{ matrix_user_username }}"
-    group: "{{ matrix_user_groupname }}"
+    owner: "{{ matrix_user_uid }}"
+    group: "{{ matrix_user_gid }}"
 
 matrix_synapse_app_service_config_files: ['/slack-migration-appservice.yaml']
 matrix_synapse_container_additional_volumes:
